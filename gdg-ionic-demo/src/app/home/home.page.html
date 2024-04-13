@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <ion-title>
+            Personajes
+          </ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-searchbar placeholder="Buscar" type="text" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @for (personaje of personajes; track $index) {
+    <ion-item>
+      <ion-avatar slot="start">
+        <img [src]="personaje.image" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{personaje.name}}</h2>
+        <p>{{personaje.species}}</p>
+        <p>{{personaje.gender}}</p>
+      </ion-label>
+      @if (personaje.status === 'Alive') {
+        <ion-chip slot="end" color="success">
+          {{personaje.status}}
+        </ion-chip> 
+      } @else if (personaje.status === 'Dead') {
+        <ion-chip slot="end" color="danger">
+          {{personaje.status}}
+        </ion-chip> 
+      } @else {
+        <ion-chip slot="end">
+          {{personaje.status}}
+        </ion-chip> 
+      }
+    </ion-item>
+  }
+</ion-content>
