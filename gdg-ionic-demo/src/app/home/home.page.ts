@@ -17,13 +17,18 @@ export class HomePage implements OnInit {
   constructor() {}
 
   personajes:Personaje[] = [];
+  data:Personaje[] = [];
 
   ngOnInit(): void {
-    this.personajesService.cargar(1).subscribe(personajes => this.personajes = personajes);
+    this.personajesService.cargar(1).subscribe(personajes => {
+      this.personajes = personajes
+      this.data = this.personajes;
+    });
   }
+
   
   onSearchChange(event:any){
     const valor = event.target.value;
-    // this.personajes = this.personajesService.buscar(valor);
+    this.data = this.personajes.filter(p => p.name.toLowerCase().includes(valor.toLowerCase()));
   }
 }

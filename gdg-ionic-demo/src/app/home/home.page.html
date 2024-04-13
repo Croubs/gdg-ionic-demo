@@ -18,7 +18,7 @@
 </ion-header>
 
 <ion-content>
-  @for (personaje of personajes; track $index) {
+  @for (personaje of data; track $index) {
     <ion-item>
       <ion-avatar slot="start">
         <img [src]="personaje.image" />
